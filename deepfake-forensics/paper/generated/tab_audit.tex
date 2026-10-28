@@ -1,0 +1,19 @@
+\begin{table}[!t]
+\centering
+\caption{Data audit of DeepFakeFace (DFF). v1: split by IMDB-WIKI id only; v2 (used for all results): groups merged across (near-)duplicates before splitting.}
+\label{tab:audit}
+\begin{tabular}{lr}
+\toprule
+Check & Result \\
+\midrule
+Images checked / missing / corrupted & 120,000 / 0 / 0 \\
+Exact-duplicate sets (SHA-256) & 165 \\
+\quad of which span splits (v1 split) & 84 \\
+Near-duplicate pairs, dHash $\le$ 4 & 65,542 \\
+\quad cross-group pairs spanning splits (v1) & 19,949 \\
+Leakage groups before / after merging (dHash $\le$ 2) & 30,000 / 18,511 \\
+Fake images that are 512$\times$512 JPEG & 100\% (90{,}000) \\
+Real images that are 512$\times$512 & 0\% (0) \\
+\bottomrule
+\end{tabular}
+\end{table}

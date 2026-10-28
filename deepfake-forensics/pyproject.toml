@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deepfake-forensics-ml"
+version = "0.1.0"
+description = "Shared ML package (data, models, training, evaluation, explainability) for the Deepfake Image Detection and Forensic Analysis Platform"
+requires-python = ">=3.11"
+
+[tool.setuptools.packages.find]
+include = ["ml*"]
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
+pythonpath = ["backend", "."]
+addopts = "-q"
+filterwarnings = [
+    "ignore::DeprecationWarning:torchvision.*",
+]

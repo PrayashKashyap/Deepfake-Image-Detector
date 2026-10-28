@@ -1,0 +1,10 @@
+# AI-generated track on the GenImage subset (see docs/RESULTS.md)
+experiment_id: genimage_sub_efficientnet_b0
+track: ai_generated
+description: efficientnet_b0, ImageNet init, GenImage 8-generator subset
+dataset: {name: genimage_sub, train_split: train, val_split: val}
+model: {arch: efficientnet_b0, pretrained: true, frequency_branch: false, dropout: 0.2}
+preprocess: {img_size: 224, resize_mode: resize_center_crop}
+augment: {hflip: true, random_crop_scale: [0.6, 1.0], jpeg_prob: 0.0, blur_prob: 0.0}
+train: {epochs: 10, batch_size: 64, lr: 3.0e-4, weight_decay: 1.0e-4, seed: 42, num_workers: 3, amp: true,
+        scheduler: cosine, warmup_epochs: 1, early_stopping_patience: 3, monitor: val_auc, grad_clip: 1.0, threshold_method: youden}

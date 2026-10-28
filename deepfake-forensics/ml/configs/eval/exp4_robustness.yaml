@@ -1,0 +1,14 @@
+# Standalone robustness evaluation (use with --checkpoint and --dataset)
+dataset: {splits: [test], max_per_class: 2000}
+batch_size: 64
+perturbations:
+  - {type: clean}
+  - {type: jpeg, quality: 90}
+  - {type: jpeg, quality: 70}
+  - {type: jpeg, quality: 50}
+  - {type: downscale, factor: 0.5}
+  - {type: downscale, factor: 0.25}
+  - {type: blur, sigma: 1.0}
+  - {type: blur, sigma: 2.0}
+  - {type: noise, std: 5.0}
+  - {type: noise, std: 15.0}

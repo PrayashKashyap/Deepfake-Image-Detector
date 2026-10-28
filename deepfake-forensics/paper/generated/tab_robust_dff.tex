@@ -1,0 +1,28 @@
+\begin{table*}[!t]
+\centering
+\caption{Robustness on a balanced random subset of the DFF test set (n = 3,000). Perturbations are applied at test time; the model and validation-selected threshold are unchanged. Acc.\ and recalls in \%.}
+\label{tab:robust_dff}
+\setlength{\tabcolsep}{2.6pt}
+\footnotesize
+\begin{tabular}{lcccccccccccc}
+\toprule
+ & \multicolumn{4}{c}{ResNet-50} & \multicolumn{4}{c}{EfficientNet-B0} & \multicolumn{4}{c}{EffNet-B0 + norm.} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}\cmidrule(lr){10-13}
+Condition & Acc. & AUC & Rec.F & Rec.R & Acc. & AUC & Rec.F & Rec.R & Acc. & AUC & Rec.F & Rec.R \\
+\midrule
+Clean & 95.1 & 0.990 & 95.5 & 94.7 & 94.0 & 0.986 & 92.1 & 95.9 & 95.6 & 0.991 & 95.5 & 95.7 \\
+JPEG q=90 & 94.7 & 0.990 & 95.1 & 94.4 & 93.9 & 0.984 & 92.4 & 95.4 & 95.8 & 0.991 & 95.6 & 96.0 \\
+JPEG q=70 & 90.8 & 0.979 & 95.6 & 85.9 & 90.0 & 0.969 & 92.6 & 87.3 & 95.4 & 0.989 & 94.6 & 96.3 \\
+JPEG q=50 & 76.0 & 0.878 & 87.8 & 64.2 & 74.2 & 0.845 & 82.1 & 66.3 & 90.7 & 0.964 & 88.7 & 92.7 \\
+Downscale $\times$0.5 & 89.3 & 0.983 & 98.5 & 80.1 & 88.0 & 0.972 & 96.5 & 79.5 & 92.9 & 0.986 & 96.9 & 88.9 \\
+Downscale $\times$0.25 & 82.9 & 0.951 & 96.6 & 69.1 & 78.2 & 0.945 & 98.1 & 58.2 & 91.4 & 0.976 & 93.4 & 89.4 \\
+Blur $\sigma$=1.0 & 90.0 & 0.979 & 97.9 & 82.1 & 89.1 & 0.969 & 94.9 & 83.3 & 92.0 & 0.983 & 96.3 & 87.8 \\
+Blur $\sigma$=2.0 & 87.6 & 0.952 & 90.3 & 84.9 & 84.2 & 0.945 & 94.7 & 73.7 & 89.6 & 0.971 & 94.1 & 85.0 \\
+Noise $\sigma$=5.0 & 73.6 & 0.928 & 47.7 & 99.5 & 72.9 & 0.922 & 46.7 & 99.1 & 95.1 & 0.988 & 93.6 & 96.5 \\
+Noise $\sigma$=15.0 & 55.0 & 0.811 & 10.1 & 99.9 & 61.9 & 0.830 & 24.7 & 99.1 & 84.0 & 0.958 & 69.7 & 98.3 \\
+\midrule
+\textit{Mean (perturbed)} & 82.2 & 0.939 & 80.0 & 84.5 & 81.4 & 0.931 & 80.3 & 82.4 & 91.9 & 0.978 & 91.4 & 92.3 \\
+\textit{Worst case} & 55.0 & 0.811 & 10.1 & 64.2 & 61.9 & 0.830 & 24.7 & 58.2 & 84.0 & 0.958 & 69.7 & 85.0 \\
+\bottomrule
+\end{tabular}
+\end{table*}

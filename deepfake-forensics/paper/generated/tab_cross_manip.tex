@@ -1,0 +1,17 @@
+\begin{table*}[!t]
+\centering
+\caption{Cross-manipulation generalisation (EfficientNet-B0, no source normalisation). \emph{Seen}: detection rate when the method is in the training data (all methods trained jointly). \emph{Unseen}: the model is retrained without that method (train and validation) and tested on 4{,}500 real and 4{,}500 unseen-method test images (n = 9,000); 95\% grouped-bootstrap CIs in brackets. Rates in \%.}
+\label{tab:cross_manip}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+ & \multicolumn{2}{c}{Fake detection rate} & \multicolumn{3}{c}{Held-out evaluation} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-6}
+Manipulation & Seen & Unseen & Real recall & Accuracy & ROC-AUC \\
+\midrule
+SD inpainting & 95.6 & 39.2 & 94.9 & 67.0\,{\scriptsize[66.3, 67.8]} & 0.844\,{\scriptsize[0.838, 0.850]} \\
+InsightFace face swap & 82.6 & 5.3 & 98.5 & 51.9\,{\scriptsize[51.6, 52.3]} & 0.713\,{\scriptsize[0.706, 0.721]} \\
+SD v1.5 text-to-image & 99.0 & 88.3 & 92.2 & 90.3\,{\scriptsize[89.6, 90.9]} & 0.966\,{\scriptsize[0.963, 0.969]} \\
+\bottomrule
+\end{tabular}
+\end{table*}

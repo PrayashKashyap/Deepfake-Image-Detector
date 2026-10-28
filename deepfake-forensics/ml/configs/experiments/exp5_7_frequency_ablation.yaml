@@ -1,0 +1,16 @@
+# Experiments 5 & 7 — Frequency features / ablation. Identical splits, preprocessing, seeds and
+# hyperparameters; the only difference is model.frequency_branch.
+experiment_id: exp5_7_frequency_ablation
+description: RGB-only vs RGB + Fourier-spectrum branch (EfficientNet-B0), 3 seeds
+comparison_type: ablation
+baseline: RGB only
+seeds: [42, 43, 44]
+variants:
+  - {label: RGB only, key: rgb, train_config: ml/configs/train/aigen_efficientnet_b0.yaml}
+  - label: RGB + FFT
+    key: rgb_fft
+    train_config: ml/configs/train/aigen_efficientnet_b0.yaml
+    overrides: ["model.frequency_branch=true"]
+evaluations:
+  - name: test
+    dataset: {splits: [test]}

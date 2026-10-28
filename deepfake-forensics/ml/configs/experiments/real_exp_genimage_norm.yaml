@@ -1,0 +1,28 @@
+# REAL DATA - GenImage shortcut fix: same model/splits/seed/hyperparameters as real_exp1_genimage ResNet-50,
+# but every image (both classes) is normalised to short side 256 + JPEG q=90 before the model
+# (training, evaluation and API inference), removing the JPEG(real)-vs-PNG(fake) format cue.
+experiment_id: real_exp_genimage_norm
+description: ResNet-50 + source normalisation (short side 256, JPEG q90) on GenImage subset
+comparison_type: ablation
+seeds: [42]
+variants:
+  - label: ResNet-50 + norm.
+    key: resnet50_norm
+    train_config: ml/configs/train/genimage_sub_resnet50.yaml
+    overrides: ["preprocess.normalize_short_side=256", "preprocess.normalize_jpeg_quality=90"]
+evaluations:
+  - name: test
+    dataset: {splits: [test]}
+  - name: robustness
+    dataset: {splits: [test]}
+    perturbations:
+      - {type: clean}
+      - {type: jpeg, quality: 90}
+      - {type: jpeg, quality: 70}
+      - {type: jpeg, quality: 50}
+      - {type: downscale, factor: 0.5}
+      - {type: downscale, factor: 0.25}
+      - {type: blur, sigma: 1.0}
+      - {type: blur, sigma: 2.0}
+      - {type: noise, std: 5.0}
+      - {type: noise, std: 15.0}

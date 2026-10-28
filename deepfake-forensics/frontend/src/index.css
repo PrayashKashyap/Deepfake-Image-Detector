@@ -1,0 +1,41 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Semantic tokens (light); dark values below. Chart series use the validated reference palette. */
+@theme {
+  --color-page: #f9f9f7;
+  --color-surface: #ffffff;
+  --color-muted: #f0efec;
+  --color-line: #e1e0d9;
+  --color-ink: #0b0b0b;
+  --color-ink-2: #52514e;
+  --color-ink-3: #898781;
+  --color-accent: #4f46e5;
+  --color-accent-strong: #4338ca;
+  --color-series-1: #2a78d6;
+  --color-series-2: #eb6834;
+  --color-series-3: #1baf7a;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.dark {
+  --color-page: #0d0d0d;
+  --color-surface: #1a1a19;
+  --color-muted: #2c2c2a;
+  --color-line: #383835;
+  --color-ink: #f0efec;
+  --color-ink-2: #c3c2b7;
+  --color-ink-3: #898781;
+  --color-accent: #818cf8;
+  --color-accent-strong: #a5b4fc;
+  --color-series-1: #3987e5;
+  --color-series-2: #d95926;
+  --color-series-3: #199e70;
+  color-scheme: dark;
+}
+
+html,
+body {
+  font-family: var(--font-sans);
+}

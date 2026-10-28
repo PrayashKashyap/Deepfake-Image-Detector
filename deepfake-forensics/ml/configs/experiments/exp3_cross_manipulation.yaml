@@ -1,0 +1,22 @@
+# Experiment 3 — Cross-manipulation generalization (FF++). Real frames ("original") are kept;
+# one manipulation method is removed from train/val and evaluated with the real test frames.
+experiment_id: exp3_cross_manipulation
+description: Train on 3 FF++ methods, test on the unseen method (+ original test frames)
+comparison_type: cross_source
+seeds: [42]
+variants:
+  - label: held-out NeuralTextures
+    key: lo_nt
+    train_config: ml/configs/train/face_efficientnet_b0.yaml
+    overrides: ["dataset.exclude_sources=[NeuralTextures, FaceShifter]"]
+    evaluations: [unseen_neuraltextures]
+  - label: held-out FaceSwap
+    key: lo_fs
+    train_config: ml/configs/train/face_efficientnet_b0.yaml
+    overrides: ["dataset.exclude_sources=[FaceSwap, FaceShifter]"]
+    evaluations: [unseen_faceswap]
+evaluations:
+  - name: unseen_neuraltextures
+    dataset: {splits: [test], include_sources: [original, NeuralTextures]}
+  - name: unseen_faceswap
+    dataset: {splits: [test], include_sources: [original, FaceSwap]}

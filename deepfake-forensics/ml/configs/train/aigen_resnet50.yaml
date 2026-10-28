@@ -1,0 +1,35 @@
+# Track 1: AI-generated image detection — ResNet-50 baseline
+experiment_id: aigen_resnet50
+track: ai_generated
+description: ResNet-50 (ImageNet init) fine-tuned for REAL vs AI-generated
+dataset:
+  name: genimage_v1
+  train_split: train
+  val_split: val
+model:
+  arch: resnet50
+  pretrained: true
+  frequency_branch: false
+  dropout: 0.2
+preprocess:
+  img_size: 224
+  resize_mode: resize_center_crop
+augment:
+  hflip: true
+  random_crop_scale: [0.6, 1.0]
+  jpeg_prob: 0.0
+  blur_prob: 0.0
+train:
+  epochs: 15
+  batch_size: 48          # fits 8 GB (RTX 4060) with AMP at 224px; lower if OOM
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  seed: 42
+  num_workers: 3
+  amp: true
+  scheduler: cosine
+  warmup_epochs: 1
+  early_stopping_patience: 4
+  monitor: val_auc
+  grad_clip: 1.0
+  threshold_method: youden

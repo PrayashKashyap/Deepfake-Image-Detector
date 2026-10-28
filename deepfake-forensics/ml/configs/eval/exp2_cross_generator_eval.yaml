@@ -1,0 +1,6 @@
+# Example: evaluate a checkpoint trained with exclude_sources=[Midjourney] on Midjourney only.
+dataset:
+  name: genimage_v1
+  splits: [test]
+  include_sources: [Midjourney]
+batch_size: 64

@@ -1,0 +1,26 @@
+# Experiment 2 — Cross-generator generalization (AI-generated track).
+# The held-out generator is excluded from train AND val (no threshold/model selection on it),
+# then evaluated alone on the test split. Source names = top-level GenImage directory names
+# in your manifest — check data/manifests/genimage_v1.summary.json and adjust.
+experiment_id: exp2_cross_generator
+description: Train without one generator, test on the held-out generator (leave-one-generator-out)
+comparison_type: cross_source
+seeds: [42]
+variants:
+  - label: held-out Midjourney
+    key: lo_midjourney
+    train_config: ml/configs/train/aigen_resnet50.yaml
+    overrides: ["dataset.exclude_sources=[Midjourney]"]
+    evaluations: [seen_generators, unseen_midjourney]
+  - label: held-out BigGAN
+    key: lo_biggan
+    train_config: ml/configs/train/aigen_resnet50.yaml
+    overrides: ["dataset.exclude_sources=[BigGAN]"]
+    evaluations: [seen_generators, unseen_biggan]
+evaluations:
+  - name: seen_generators
+    dataset: {splits: [test], exclude_sources: [Midjourney, BigGAN]}
+  - name: unseen_midjourney
+    dataset: {splits: [test], include_sources: [Midjourney]}
+  - name: unseen_biggan
+    dataset: {splits: [test], include_sources: [BigGAN]}

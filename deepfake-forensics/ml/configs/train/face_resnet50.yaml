@@ -1,0 +1,36 @@
+# Track 2: facial deepfake detection — ResNet-50 baseline (frames split by video/identity group)
+experiment_id: face_resnet50
+track: face_deepfake
+description: ResNet-50 (ImageNet init) fine-tuned on face crops, REAL vs manipulated
+dataset:
+  name: ffpp_c23
+  train_split: train
+  val_split: val
+model:
+  arch: resnet50
+  pretrained: true
+  frequency_branch: false
+  dropout: 0.3
+preprocess:
+  img_size: 224
+  resize_mode: resize        # face crops are near-square; avoid cropping away face regions
+augment:
+  hflip: true
+  random_crop_scale: [0.8, 1.0]
+  jpeg_prob: 0.2
+  jpeg_quality: [60, 95]
+  blur_prob: 0.1
+train:
+  epochs: 12
+  batch_size: 48
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  seed: 42
+  num_workers: 3
+  amp: true
+  scheduler: cosine
+  warmup_epochs: 1
+  early_stopping_patience: 3
+  monitor: val_auc
+  grad_clip: 1.0
+  threshold_method: youden

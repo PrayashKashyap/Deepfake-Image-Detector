@@ -1,0 +1,17 @@
+\begin{table*}[!t]
+\centering
+\caption{Facial-deepfake detection on the DeepFakeFace test split. n = 9,000 test images (4,500 real / 4,500 fake); 95\% grouped-bootstrap CIs in brackets; threshold $\tau$ selected on validation; latency: batch size 1, RTX~4060, AMP.}
+\label{tab:main_dff}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccccccc}
+\toprule
+ & Accuracy & \multicolumn{2}{c}{REAL} & \multicolumn{2}{c}{FAKE} & Macro & ROC-AUC & & Latency \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Model & (\%) & Prec. & Rec. & Prec. & Rec. & F1 & & $\tau$ & (ms) \\
+\midrule
+ResNet-50 & 95.12\,{\scriptsize[94.7, 95.6]} & 95.6 & 94.6 & 94.7 & 95.6 & 0.9512 & 0.9899\,{\scriptsize[0.988, 0.991]} & 0.194 & 6.9 \\
+EfficientNet-B0 & 94.38\,{\scriptsize[93.9, 94.8]} & 92.6 & 96.4 & 96.3 & 92.3 & 0.9438 & 0.9879\,{\scriptsize[0.986, 0.989]} & 0.638 & 8.1 \\
+EffNet-B0 + norm. & 95.47\,{\scriptsize[95.0, 95.9]} & 94.9 & 96.1 & 96.1 & 94.8 & 0.9547 & 0.9906\,{\scriptsize[0.989, 0.992]} & 0.337 & 7.6 \\
+\bottomrule
+\end{tabular}
+\end{table*}

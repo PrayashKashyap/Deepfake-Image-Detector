@@ -1,0 +1,4 @@
+# NVIDIA GPU (CUDA 13.0 wheels; needs an NVIDIA driver supporting CUDA >= 13.0, e.g. 580+).
+--index-url https://download.pytorch.org/whl/cu130
+torch==2.14.1+cu130
+torchvision==0.29.1+cu130

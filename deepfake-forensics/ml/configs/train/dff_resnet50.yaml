@@ -1,0 +1,10 @@
+# Facial-deepfake track on DeepFakeFace (see docs/RESULTS.md)
+experiment_id: dff_resnet50
+track: face_deepfake
+description: resnet50, ImageNet init, DeepFakeFace (3 manipulation methods)
+dataset: {name: dff, train_split: train, val_split: val, max_train_per_class: 15000, max_val_per_class: 3000}
+model: {arch: resnet50, pretrained: true, frequency_branch: false, dropout: 0.3}
+preprocess: {img_size: 224, resize_mode: resize}
+augment: {hflip: true, random_crop_scale: [0.8, 1.0], jpeg_prob: 0.0, blur_prob: 0.0}
+train: {epochs: 8, batch_size: 48, lr: 1.0e-4, weight_decay: 1.0e-4, seed: 42, num_workers: 3, amp: true,
+        scheduler: cosine, warmup_epochs: 1, early_stopping_patience: 3, monitor: val_auc, grad_clip: 1.0, threshold_method: youden}

@@ -1,0 +1,23 @@
+# Copy to ml/configs/datasets.local.yaml (git-ignored) and edit the paths for your machine.
+# Paths may be absolute or relative to the repository root; environment variables are expanded.
+# Alternatively set DFF_DATASET_<NAME>_ROOT and DFF_DATASET_<NAME>_MANIFEST.
+datasets:
+  genimage_v1:
+    track: ai_generated
+    description: GenImage subset built with ml.data.genimage (balanced, 2000/class/generator)
+    root: D:/datasets/GenImage
+    manifest: data/manifests/genimage_v1.csv
+  ffpp_c23:
+    track: face_deepfake
+    description: FaceForensics++ c23 frames (16/video, face crops) built with ml.data.faceforensics
+    root: D:/datasets/ffpp_frames
+    manifest: data/manifests/ffpp_c23.csv
+  # Synthetic software-test fixture (python -m ml.data.fixture). NOT for reporting results.
+  fixture_ai:
+    track: ai_generated
+    root: data/fixtures/synthetic
+    manifest: data/fixtures/synthetic/ai_generated_manifest.csv
+  fixture_face:
+    track: face_deepfake
+    root: data/fixtures/synthetic
+    manifest: data/fixtures/synthetic/face_deepfake_manifest.csv

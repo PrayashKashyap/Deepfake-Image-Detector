@@ -1,0 +1,16 @@
+\begin{table}[!t]
+\centering
+\caption{Per-source accuracy (\%) on the DFF test split; mean fake score in parentheses. For fake sources accuracy equals the detection rate, for real images the specificity.}
+\label{tab:per_method_dff}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrccc}
+\toprule
+Source & n & ResNet-50 & EfficientNet-B0 & EffNet-B0 + norm. \\
+\midrule
+SD inpainting & 1,452 & 98.28 (0.961) & 95.59 (0.959) & 94.90 (0.936) \\
+InsightFace swap & 1,519 & 89.34 (0.844) & 82.55 (0.843) & 91.38 (0.901) \\
+SD v1.5 text2img & 1,529 & 99.41 (0.987) & 98.95 (0.989) & 98.17 (0.969) \\
+Real (IMDB-WIKI) & 4,500 & 94.60 (0.040) & 96.42 (0.054) & 96.11 (0.037) \\
+\bottomrule
+\end{tabular}
+\end{table}

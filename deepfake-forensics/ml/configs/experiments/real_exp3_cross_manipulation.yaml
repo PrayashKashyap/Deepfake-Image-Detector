@@ -1,0 +1,28 @@
+# REAL DATA - Experiment 3: leave-one-manipulation-out on DeepFakeFace (EfficientNet-B0).
+experiment_id: real_exp3_cross_manipulation
+description: Train on wiki + 2 fake methods, test on wiki + the unseen method
+comparison_type: cross_source
+seeds: [42]
+variants:
+  - label: held-out inpainting
+    key: lo_inpainting
+    train_config: ml/configs/train/dff_efficientnet_b0.yaml
+    overrides: ["dataset.exclude_sources=[inpainting]"]
+    evaluations: [unseen_inpainting]
+  - label: held-out insight
+    key: lo_insight
+    train_config: ml/configs/train/dff_efficientnet_b0.yaml
+    overrides: ["dataset.exclude_sources=[insight]"]
+    evaluations: [unseen_insight]
+  - label: held-out text2img
+    key: lo_text2img
+    train_config: ml/configs/train/dff_efficientnet_b0.yaml
+    overrides: ["dataset.exclude_sources=[text2img]"]
+    evaluations: [unseen_text2img]
+evaluations:
+  - name: unseen_inpainting
+    dataset: {splits: [test], include_sources: [wiki, inpainting], max_per_class: 4500}
+  - name: unseen_insight
+    dataset: {splits: [test], include_sources: [wiki, insight], max_per_class: 4500}
+  - name: unseen_text2img
+    dataset: {splits: [test], include_sources: [wiki, text2img], max_per_class: 4500}

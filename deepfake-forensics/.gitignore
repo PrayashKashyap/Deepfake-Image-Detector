@@ -1,0 +1,51 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/coverage/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env.local
+
+# Local dataset configuration (machine-specific paths)
+ml/configs/datasets.local.yaml
+
+# Data, checkpoints, runtime storage (large / private) — keep directory placeholders only
+data/*
+!data/.gitkeep
+storage/*
+!storage/.gitkeep
+artifacts/checkpoints/**/*
+!artifacts/checkpoints/**/
+!artifacts/checkpoints/**/.gitkeep
+artifacts/evaluations/*
+!artifacts/evaluations/.gitkeep
+artifacts/experiments/*
+!artifacts/experiments/.gitkeep
+artifacts/pretrained/
+reports/*
+!reports/.gitkeep
+*.pt
+*.pth
+*.ckpt
+*.mp4
+*.avi
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+frontend/*.tsbuildinfo

@@ -1,0 +1,12 @@
+# Experiment 1 — Baseline comparison (AI-generated track): ResNet-50 vs EfficientNet-B0 on identical splits.
+experiment_id: exp1_baseline_aigen
+description: ResNet-50 vs EfficientNet-B0, same manifest/splits/preprocessing, 3 seeds each
+comparison_type: comparison
+baseline: ResNet-50
+seeds: [42, 43, 44]
+variants:
+  - {label: ResNet-50, key: resnet50, train_config: ml/configs/train/aigen_resnet50.yaml}
+  - {label: EfficientNet-B0, key: efficientnet_b0, train_config: ml/configs/train/aigen_efficientnet_b0.yaml}
+evaluations:
+  - name: test
+    dataset: {splits: [test]}

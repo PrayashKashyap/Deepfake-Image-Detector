@@ -1,0 +1,32 @@
+# REAL DATA - Experiments 5 & 7 (+ JPEG-bias control): identical splits/seeds/hyperparameters.
+experiment_id: real_exp5_7_ablation_genimage
+description: EfficientNet-B0 RGB vs RGB+FFT vs RGB with JPEG augmentation (both classes), seeds 42/43
+comparison_type: ablation
+baseline: RGB
+seeds: [42, 43]
+variants:
+  - {label: RGB, key: rgb, train_config: ml/configs/train/genimage_sub_efficientnet_b0.yaml}
+  - label: RGB + FFT
+    key: rgb_fft
+    train_config: ml/configs/train/genimage_sub_efficientnet_b0.yaml
+    overrides: ["model.frequency_branch=true"]
+  - label: RGB + JPEG aug
+    key: rgb_jpegaug
+    train_config: ml/configs/train/genimage_sub_efficientnet_b0.yaml
+    overrides: ["augment.jpeg_prob=0.5", "augment.jpeg_quality=[60, 95]"]
+evaluations:
+  - name: test
+    dataset: {splits: [test]}
+  - name: robustness
+    dataset: {splits: [test]}
+    perturbations:
+      - {type: clean}
+      - {type: jpeg, quality: 90}
+      - {type: jpeg, quality: 70}
+      - {type: jpeg, quality: 50}
+      - {type: downscale, factor: 0.5}
+      - {type: downscale, factor: 0.25}
+      - {type: blur, sigma: 1.0}
+      - {type: blur, sigma: 2.0}
+      - {type: noise, std: 5.0}
+      - {type: noise, std: 15.0}

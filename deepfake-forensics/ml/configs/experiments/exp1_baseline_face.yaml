@@ -1,0 +1,12 @@
+# Experiment 1 — Baseline comparison (facial deepfake track).
+experiment_id: exp1_baseline_face
+description: ResNet-50 vs EfficientNet-B0 on FF++ frames (video/identity-grouped splits)
+comparison_type: comparison
+baseline: ResNet-50
+seeds: [42, 43, 44]
+variants:
+  - {label: ResNet-50, key: resnet50, train_config: ml/configs/train/face_resnet50.yaml}
+  - {label: EfficientNet-B0, key: efficientnet_b0, train_config: ml/configs/train/face_efficientnet_b0.yaml}
+evaluations:
+  - name: test
+    dataset: {splits: [test]}

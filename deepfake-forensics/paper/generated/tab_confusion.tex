@@ -1,0 +1,14 @@
+\begin{table}[!t]
+\centering
+\caption{Confusion matrices on the DFF test set (TN: real$\to$REAL, FP: real$\to$FAKE, FN: fake$\to$REAL, TP: fake$\to$FAKE).}
+\label{tab:confusion}
+\begin{tabular}{lrrrr}
+\toprule
+Model & TN & FP & FN & TP \\
+\midrule
+ResNet-50 & 4,257 & 243 & 196 & 4,304 \\
+EfficientNet-B0 & 4,339 & 161 & 345 & 4,155 \\
+EffNet-B0 + norm. & 4,325 & 175 & 233 & 4,267 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,21 @@
+# SOFTWARE SMOKE TEST ONLY — trains on the synthetic fixture (python -m ml.data.fixture).
+# Results are meaningless; the checkpoint is flagged is_synthetic_fixture=true everywhere.
+experiment_id: SMOKE_fixture_ai
+track: ai_generated
+dataset:
+  root: data/fixtures/synthetic
+  manifest: data/fixtures/synthetic/ai_generated_manifest.csv
+model:
+  arch: efficientnet_b0
+  pretrained: false
+  frequency_branch: false
+preprocess:
+  img_size: 64
+  resize_mode: resize
+train:
+  epochs: 2
+  batch_size: 16
+  lr: 1.0e-3
+  num_workers: 0
+  early_stopping_patience: 5
+  warmup_epochs: 0

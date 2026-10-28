@@ -1,0 +1,21 @@
+# SOFTWARE SMOKE TEST ONLY (synthetic fixture). Exercises the full experiment pipeline.
+experiment_id: SMOKE_experiment
+description: Pipeline smoke test on synthetic data — not a result
+comparison_type: ablation
+baseline: RGB only
+seeds: [1]
+variants:
+  - {label: RGB only, key: rgb, train_config: ml/configs/train/fixture_smoke.yaml}
+  - label: RGB + FFT
+    key: rgb_fft
+    train_config: ml/configs/train/fixture_smoke.yaml
+    overrides: ["model.frequency_branch=true"]
+evaluations:
+  - name: test
+    dataset: {splits: [test]}
+  - name: robustness
+    dataset: {splits: [test]}
+    perturbations:
+      - {type: clean}
+      - {type: jpeg, quality: 50}
+      - {type: blur, sigma: 1.0}

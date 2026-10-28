@@ -1,0 +1,26 @@
+# REAL DATA - Experiment 2: leave-one-generator-out (EfficientNet-B0). The held-out generator's
+# images (AI and its paired real subset) are removed from train AND val.
+experiment_id: real_exp2_cross_generator
+description: Leave-one-generator-out on GenImage subset; tested on held-out generator only
+comparison_type: cross_source
+seeds: [42]
+variants:
+  - label: held-out biggan
+    key: lo_biggan
+    train_config: ml/configs/train/genimage_sub_efficientnet_b0.yaml
+    overrides: ["dataset.exclude_sources=[biggan_imagenet]"]
+    evaluations: [seen_wo_biggan, unseen_biggan]
+  - label: held-out midjourney
+    key: lo_midjourney
+    train_config: ml/configs/train/genimage_sub_efficientnet_b0.yaml
+    overrides: ["dataset.exclude_sources=[midjourney_imagenet]"]
+    evaluations: [seen_wo_midjourney, unseen_midjourney]
+evaluations:
+  - name: seen_wo_biggan
+    dataset: {splits: [test], exclude_sources: [biggan_imagenet]}
+  - name: seen_wo_midjourney
+    dataset: {splits: [test], exclude_sources: [midjourney_imagenet]}
+  - name: unseen_biggan
+    dataset: {splits: [test], include_sources: [biggan_imagenet]}
+  - name: unseen_midjourney
+    dataset: {splits: [test], include_sources: [midjourney_imagenet]}
